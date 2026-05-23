@@ -2,6 +2,8 @@
 
 MCP server for the [Geomelon](https://rapidapi.com/hom3chuk/api/geomelon) geographic API. Exposes cities, countries, regions, and languages as tools any MCP-compatible AI client can call.
 
+Looking for other ways to integrate? See all official libraries at [geomelon.dev/libraries](https://geomelon.dev/libraries/).
+
 Two transports are included:
 
 | Binary | Transport | Use case |

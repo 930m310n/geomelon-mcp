@@ -1,6 +1,6 @@
 {
   "name": "geomelon-mcp",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "MCP server for the Geomelon geographic API — stdio and remote HTTP transports",
   "keywords": [
     "geomelon",

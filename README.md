@@ -148,6 +148,12 @@ The HTTP transport is stateless — each request is independent, no session mana
 | `list_languages` | List all languages in the database |
 | `get_language` | Details for a language by UUID |
 
+### Oneshot prefix search (free, no API key)
+
+Fast country-scoped city prefix search served as static files. No RapidAPI subscription needed. See [geomelon.dev/free-city-autocomplete-api](https://geomelon.dev/free-city-autocomplete-api/) for the HTTP endpoint, supported country/language pairs, and response shape. This MCP server does not wrap the oneshot endpoint — call it directly.
+
+---
+
 ### Compound tools
 
 These tools chain multiple API calls internally to save round-trips.

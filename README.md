@@ -22,6 +22,16 @@ Two transports are included:
 
 No `GEOMELON_API_KEY`? Run the server anyway — it starts up with just the `search_cities_autocomplete` tool, backed by the free [oneshot host](https://geomelon.dev/free-city-autocomplete-api/), no signup required. Every other tool needs a key. This is the fastest way to try the server before subscribing on RapidAPI.
 
+### Try it with zero setup
+
+Geomelon also runs a public hosted instance of this same keyless demo — no `npx`, no local process. Point any remote-MCP-capable client (Claude web/desktop connectors, ChatGPT connectors, MCP Inspector, etc.) at:
+
+```
+https://mcp.geomelon.dev/mcp
+```
+
+It exposes only `search_cities_autocomplete`, same as running the server yourself with no API key. For the full 22-tool set, run your own instance (below) with your RapidAPI key.
+
 ---
 
 ## Claude Code (HTTP)
@@ -112,7 +122,7 @@ npx geomelon-mcp-http
 
 Then register with any MCP client using `http://your-host:3000/mcp` as the URL.
 
-The HTTP transport is stateless — each request is independent, no session management needed.
+The HTTP transport is stateless — each request is independent, no session management needed. CORS is wide open (`Access-Control-Allow-Origin: *`) since this transport is meant to be reachable by browser-based remote-MCP clients too. `GET /` (or `/health`) returns a small JSON status object — useful for uptime checks — reporting whether the instance has a key configured (`"mode": "full"` or `"mode": "keyless-demo"`).
 
 ---
 

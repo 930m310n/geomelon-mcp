@@ -1,13 +1,14 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { GeomelonClient } from 'geomelon';
 import { z } from 'zod';
+import { version } from '../package.json';
 
 export function createServer(apiKey: string): McpServer {
   const client = new GeomelonClient({ apiKey });
 
   const server = new McpServer({
     name: 'geomelon',
-    version: '1.0.0',
+    version,
   });
 
   // ── Cities ──────────────────────────────────────────────────────────────────

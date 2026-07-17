@@ -1,0 +1,55 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: https://registry.npmjs.org
+      # Trusted publishing (OIDC) needs npm >= 11.5.1
+      - run: npm install -g npm@latest
+      - name: Check release tag matches package.json version
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          PKG=$(jq -r .version package.json)
+          if [ "$TAG" != "$PKG" ]; then
+            echo "Release tag $TAG does not match package.json version $PKG"
+            exit 1
+          fi
+      - run: npm ci
+      - run: npm publish
+
+  publish-mcp-registry:
+    runs-on: ubuntu-latest
+    needs: publish-npm
+    steps:
+      - uses: actions/checkout@v7
+      - name: Sync server.json version from package.json
+        run: |
+          VERSION=$(jq -r .version package.json)
+          jq --arg v "$VERSION" '.version = $v | .packages[].version = $v' server.json > server.json.tmp
+          mv server.json.tmp server.json
+          cat server.json
+      - name: Install mcp-publisher
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          url=$(gh api repos/modelcontextprotocol/registry/releases/latest \
+            --jq '.assets[] | select(.name | test("linux_amd64.tar.gz$")) | .browser_download_url')
+          curl -sL "$url" | tar xz mcp-publisher
+      - name: Publish to MCP Registry
+        run: |
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish

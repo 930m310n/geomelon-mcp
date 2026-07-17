@@ -6,12 +6,12 @@
     "url": "https://github.com/930m310n/geomelon-mcp",
     "source": "github"
   },
-  "version": "1.0.8",
+  "version": "1.0.10",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "geomelon-mcp",
-      "version": "1.0.8",
+      "version": "1.0.10",
       "transport": {
         "type": "stdio"
       },

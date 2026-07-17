@@ -6,8 +6,10 @@ import { createServer } from './server.js';
 async function main() {
   const apiKey = process.env.GEOMELON_API_KEY;
   if (!apiKey) {
-    console.error('Error: GEOMELON_API_KEY environment variable is required');
-    process.exit(1);
+    console.error(
+      'GEOMELON_API_KEY not set — running in keyless demo mode: only search_cities_autocomplete is available. ' +
+        'Get a key at https://rapidapi.com/hom3chuk/api/geomelon for full access.',
+    );
   }
 
   const PORT = parseInt(process.env.PORT ?? '3000', 10);

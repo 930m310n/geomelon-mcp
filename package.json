@@ -1,6 +1,6 @@
 {
   "name": "geomelon-mcp",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "description": "MCP server for the Geomelon geographic API — stdio and remote HTTP transports",
   "keywords": [
     "geomelon",
@@ -36,7 +36,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.11.0",
     "dotenv": "^16.0.0",
-    "geomelon": "^1.0.6",
+    "geomelon": "^1.1.0",
     "zod": "^3.24.0"
   },
   "devDependencies": {

@@ -14,7 +14,13 @@ Two transports are included:
 ## Requirements
 
 - Node.js 18+
-- A [RapidAPI](https://rapidapi.com/hom3chuk/api/geomelon) key with the Geomelon API subscribed
+- A [RapidAPI](https://rapidapi.com/hom3chuk/api/geomelon) key with the Geomelon API subscribed — optional, see [keyless demo mode](#keyless-demo-mode) below
+
+---
+
+## Keyless demo mode
+
+No `GEOMELON_API_KEY`? Run the server anyway — it starts up with just the `search_cities_autocomplete` tool, backed by the free [oneshot host](https://geomelon.dev/free-city-autocomplete-api/), no signup required. Every other tool needs a key. This is the fastest way to try the server before subscribing on RapidAPI.
 
 ---
 
@@ -150,7 +156,11 @@ The HTTP transport is stateless — each request is independent, no session mana
 
 ### Oneshot prefix search (free, no API key)
 
-Fast country-scoped city prefix search served as static files. No RapidAPI subscription needed. See [geomelon.dev/free-city-autocomplete-api](https://geomelon.dev/free-city-autocomplete-api/) for the HTTP endpoint, supported country/language pairs, and response shape. This MCP server does not wrap the oneshot endpoint — call it directly.
+| Tool | Description |
+|---|---|
+| `search_cities_autocomplete` | Country-scoped, language-specific city name prefix search backed by pre-built static files. **The only tool available in [keyless demo mode](#keyless-demo-mode).** Works in keyed mode too — it's the fastest search path. |
+
+See [geomelon.dev/free-city-autocomplete-api](https://geomelon.dev/free-city-autocomplete-api/) for supported country/language pairs and the underlying HTTP endpoint.
 
 ---
 

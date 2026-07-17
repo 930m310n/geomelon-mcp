@@ -6,19 +6,19 @@
     "url": "https://github.com/930m310n/geomelon-mcp",
     "source": "github"
   },
-  "version": "1.0.10",
+  "version": "1.1.0",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "geomelon-mcp",
-      "version": "1.0.10",
+      "version": "1.1.0",
       "transport": {
         "type": "stdio"
       },
       "environmentVariables": [
         {
-          "description": "Your RapidAPI key for Geomelon",
-          "isRequired": true,
+          "description": "Your RapidAPI key for Geomelon. Optional: without it the server runs in keyless demo mode, exposing only the free search_cities_autocomplete tool.",
+          "isRequired": false,
           "format": "string",
           "isSecret": true,
           "name": "GEOMELON_API_KEY"
